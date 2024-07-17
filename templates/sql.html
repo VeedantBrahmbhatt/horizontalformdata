@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sql.css') }}">
+{% endblock %}
+{% block content %}
+<h2>Execute SQL Query</h2>
+<form method="post" align="center">
+    <textarea name="query" rows="4" cols="50" align="center">{{ query }}</textarea>
+    <button type="submit">Execute</button>
+</form>
+{% if error %}
+<h3>Error</h3>
+<pre>{{ error }}</pre>
+{% elif result %}
+<h3>Result</h3>
+<table>
+    <thead>
+        <tr>
+            {% for col in result[0].keys() %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in result %}
+        <tr>
+            {% for cell in row.values() %}
+            <td>{{ cell }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<form method="post" action="{{ url_for('sql_download') }}">
+    <input type="hidden" name="file" value="{{ file | tojson }}">
+    <button type="submit">Download Result</button>
+</form>
+{% endif %}
+{% endblock %}

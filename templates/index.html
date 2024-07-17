@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+<h2>Enter Data</h2>
+<form method="post" class="data-entry-form">
+    <div class="input-row header-row">
+        {% for i in range(1, 21) %}
+        <div class="input-container">
+            <label for="col{{ i }}">Column {{ i }}</label>
+        </div>
+        {% endfor %}
+    </div>
+    {% for idx in range(data|length + 1) %}
+    <div class="input-row">
+        {% for i in range(1, 21) %}
+        <div class="input-container">
+            <input type="text" name="col{{ i }}_{{ idx }}" id="col{{ i }}_{{ idx }}" value="{{ data[idx-1][i-1] if idx < data|length + 1 and data[idx-1] is defined else '' }}">
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <div class="button-container">
+        <button type="submit" name="add_row" class="btn">Add Row</button>
+        <button type="submit" name="submit" class="btn">Submit</button>
+    </div>
+</form>
+{% endblock %}
