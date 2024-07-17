@@ -72,6 +72,6 @@ This project demonstrates how to create a full-featured data entry application u
 
 ### GitHub Repository
 
-Check out the complete code on [GitHub](https://github.com/yourusername/horizontalformdata).
+Check out the complete code on [GitHub](https://github.com/VeedantBrahmbhatt/horizontalformdata).
 
 Feel free to fork the repository and customize it further to fit your specific needs. Happy coding!
